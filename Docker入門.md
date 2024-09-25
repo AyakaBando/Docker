@@ -118,10 +118,10 @@ Linux → シェル → ターミナル
 - イメージからコンテナを起動
 `docker container run [OPTIONS] IMAGE [COMMAND] [ARG...]`
     - 起動時に実行するコマンドを指定する場合は`[COMMAND] [ARG...]`部分に記載する
->    Ubuntuの場合`[COMMAND]`部分のデフォルト値は`bash`
->    例
->    `docker container run ubuntu whoami`
->    `docker container run ubuntu head -n 4 /etc/os-release`
+> Ubuntuの場合`[COMMAND]`部分のデフォルト値は`bash`
+>> 例\
+>> `docker container run ubuntu whoami`\
+>> `docker container run ubuntu head -n 4 /etc/os-release`\
 
 - 起動中コンテナ一覧の確認
 `docker container ls [OPTIONS]`
@@ -130,9 +130,9 @@ Linux → シェル → ターミナル
 
 - コンテナの停止
 `docker container stop [OPTIONS] CONTAINER [CONTAINER...]`
-> CONTAINERの後にCONTAINER IDを入れる
-> 例
-> `docker container stop CONTAINER 4ece6293df6a`
+> - CONTAINERの後にCONTAINER IDを入れる
+> - 例
+> - `docker container stop CONTAINER 4ece6293df6a`
 
 - コンテナの削除
 `docker container rm [OPTIONS] CONTAINER [CONTAINER...]`
@@ -146,9 +146,9 @@ Linux → シェル → ターミナル
 - コンテナ停止時に自動で削除
     - コンテナの名前重複時に終了コンテナを自動で削除できる
 `docker container run --rm [IMAGE] [COMMAND] [ARG...]`
-> [OPTIONS]を2種類以上使うとき
-> 例
-> `docker conttainer run --name hello --rm hello-world`
+> - [OPTIONS]を2種類以上使うとき
+> - 例
+> - `docker conttainer run --name hello --rm hello-world`
 
 - コンテナを対話操作する
 `docker container run --interactive [IMAGE] [COMMAND] [ARG...]`
@@ -166,14 +166,14 @@ Linux → シェル → ターミナル
 > 以下の書き方はエラーが出る
 > `docker container run --name db --rm mysql`
 > エラー内容
->  You need to specify one of the following as an environment variable:
->    - MYSQL_ROOT_PASSWORD
->    - MYSQL_ALLOW_EMPTY_PASSWORD
->    - MYSQL_RANDOM_ROOT_PASSWORD
+>  "You need to specify one of the following as an environment variable":
+>>    - MYSQL_ROOT_PASSWORD
+>>    - MYSQL_ALLOW_EMPTY_PASSWORD
+>>    - MYSQL_RANDOM_ROOT_PASSWORD
 
-> 環境変数を指定するには`--env`オプションに続けて`変数名=値`の形式で変数を指定する
-> MySQLサーバーは3306晩ポートで起動する
-> `docker container run --name db --rm --env MYSQL_ROOT_PASSWORD=secret --publish 3306:3306 mysql`
+> - 環境変数を指定するには`--env`オプションに続けて`変数名=値`の形式で変数を指定する
+> - MySQLサーバーは3306晩ポートで起動する
+>> `docker container run --name db --rm --env MYSQL_ROOT_PASSWORD=secret --publish 3306:3306 mysql`
 
 - MySQLサーバーに接続する
 `mysql --host=127.0.0.1 --port=3306 --user=root --password=secret`
@@ -195,15 +195,17 @@ Linux → シェル → ターミナル
 `psql --host=127.0.0.1 --port=5432 --username=postgres`
 
 >※以下のようなエラーが出る場合
+> 
 > `psql: エラー: "127.0.0.1"、ポート5432のサーバーへの接続に失敗しました: FATAL:  ユーザー"postgres"のパスワード認証に失敗しました`
+>
 > C:\Program Files\PostgreSQL\16\data\pg_hba.confのMETHODをtrustに変更してみる
 
 - 起動中のコンテナに命令する（起動中のコンテナで新たなコマンドを実行する）
 `docker container exec [OPTIONS] CONTAINER COMMAND [ARG...]`
 
-> `container exec` と`container run`の違い
-> `container run`はコンテナを起動してコンテナ内でPID1を生成する。また、既存のコマンドで新たに`container run`を実行させるとコマンドを置き換えてしまう。
-> `container exec`はPID1がすでに存在するコンテナで新たなプロセスを起動する。
+> - `container exec` と`container run`の違い
+> - `container run`はコンテナを起動してコンテナ内でPID1を生成する。また、既存のコマンドで新たに`container run`を実行させるとコマンドを置き換えてしまう。
+> - `container exec`はPID1がすでに存在するコンテナで新たなプロセスを起動する。
 
 
 ##　イメージの活用
@@ -211,11 +213,11 @@ Linux → シェル → ターミナル
 `[HOST[:PORT_NUMBER]/][NAMESPACE/]REPOSITORY[:TAG]`
 ※`[:TAG]`に`latest`を利用することは推奨されていない
 
-> `docker.io/library/ubuntu:23.10`
-> `docker.io` -> HOST
-> `library` -> NAMESPACE
-> `ubuntu` -> REPOSITORY
-> `23.10` -> TAG
+> - `docker.io/library/ubuntu:23.10`
+> - `docker.io` -> HOST
+> - `library` -> NAMESPACE
+> - `ubuntu` -> REPOSITORY
+> - `23.10` -> TAG
 
 ## イメージの基本操作
 - コマンド一覧の確認
@@ -230,9 +232,9 @@ Linux → シェル → ターミナル
 - コンテナにvimをインストールする
 `docker container run --name ubuntu -it ubuntu:22.04 bash`
 ※書き込みをする必要があるため`-it (--interactive --tty)`を記載する。
-> `apt update`
-> `apt install vim`
-> `which vi`
+> - `apt update`
+> - `apt install vim`
+> -  `which vi`
 
 - コンテナからイメージを作成する
 `docker container commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]`
@@ -254,8 +256,8 @@ Linux → シェル → ターミナル
 `docker image load [OPTIONS]`
 
 > `image save` + `image load`の目的
-> イメージをtarアーカイブファイルにしてファイルシステムで扱えるようにする
-> イメージのバックアップやマシン間の移動で使用できる
+> - イメージをtarアーカイブファイルにしてファイルシステムで扱えるようにする
+> - イメージのバックアップやマシン間の移動で使用できる
 
 ## Dockerfileの活用
 - RootFS -> ファイルシステムを変更するtarアーカイブファイルの情報
