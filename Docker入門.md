@@ -121,7 +121,7 @@ Linux → シェル → ターミナル
 > Ubuntuの場合`[COMMAND]`部分のデフォルト値は`bash`
 >> 例\
 >> `docker container run ubuntu whoami`\
->> `docker container run ubuntu head -n 4 /etc/os-release`\
+>> `docker container run ubuntu head -n 4 /etc/os-release`
 
 - 起動中コンテナ一覧の確認
 `docker container ls [OPTIONS]`
@@ -130,9 +130,9 @@ Linux → シェル → ターミナル
 
 - コンテナの停止
 `docker container stop [OPTIONS] CONTAINER [CONTAINER...]`
-> - CONTAINERの後にCONTAINER IDを入れる
-> - 例
-> - `docker container stop CONTAINER 4ece6293df6a`
+> CONTAINERの後にCONTAINER IDを入れる
+>> 例\
+>> `docker container stop CONTAINER 4ece6293df6a`
 
 - コンテナの削除
 `docker container rm [OPTIONS] CONTAINER [CONTAINER...]`
@@ -146,9 +146,9 @@ Linux → シェル → ターミナル
 - コンテナ停止時に自動で削除
     - コンテナの名前重複時に終了コンテナを自動で削除できる
 `docker container run --rm [IMAGE] [COMMAND] [ARG...]`
-> - [OPTIONS]を2種類以上使うとき
-> - 例
-> - `docker conttainer run --name hello --rm hello-world`
+> [OPTIONS]を2種類以上使うとき
+>> 例\
+>> `docker conttainer run --name hello --rm hello-world`
 
 - コンテナを対話操作する
 `docker container run --interactive [IMAGE] [COMMAND] [ARG...]`
@@ -163,13 +163,13 @@ Linux → シェル → ターミナル
 `docker container run --env [IMAGE] [COMMAND] [ARG...]`
 
 - MySQLサーバーを起動する
-> 以下の書き方はエラーが出る
-> `docker container run --name db --rm mysql`
-> エラー内容
->  "You need to specify one of the following as an environment variable":
->>    - MYSQL_ROOT_PASSWORD
->>    - MYSQL_ALLOW_EMPTY_PASSWORD
->>    - MYSQL_RANDOM_ROOT_PASSWORD
+> 以下の書き方はエラーが出る\
+> `docker container run --name db --rm mysql`\
+> エラー内容\
+>  "You need to specify one of the following as an environment variable":\
+>> - MYSQL_ROOT_PASSWORD
+>> - MYSQL_ALLOW_EMPTY_PASSWORD
+>> - MYSQL_RANDOM_ROOT_PASSWORD
 
 > - 環境変数を指定するには`--env`オプションに続けて`変数名=値`の形式で変数を指定する
 > - MySQLサーバーは3306晩ポートで起動する
@@ -194,10 +194,8 @@ Linux → シェル → ターミナル
 `docker container run --name db --detach --env POSTGRES_PASSWORD=secret --publish 5432:5432 postgres`
 `psql --host=127.0.0.1 --port=5432 --username=postgres`
 
->※以下のようなエラーが出る場合
-> 
-> `psql: エラー: "127.0.0.1"、ポート5432のサーバーへの接続に失敗しました: FATAL:  ユーザー"postgres"のパスワード認証に失敗しました`
->
+>※以下のようなエラーが出る場合\
+> `psql: エラー: "127.0.0.1"、ポート5432のサーバーへの接続に失敗しました: FATAL:  ユーザー"postgres"のパスワード認証に失敗しました`\
 > C:\Program Files\PostgreSQL\16\data\pg_hba.confのMETHODをtrustに変更してみる
 
 - 起動中のコンテナに命令する（起動中のコンテナで新たなコマンドを実行する）
@@ -274,5 +272,5 @@ Linux → シェル → ターミナル
         - URL - GitHubリポジトリやtarアーカイブファイルのあるURL等
         - '-' - テキストファイル
 
-    > 例:（Current Directoryを指定する）
-    > `docker image build --tag my-ubuntu:22.04 . `
+> 例:（Current Directoryを指定する）\
+> `docker image build --tag my-ubuntu:22.04 . `
